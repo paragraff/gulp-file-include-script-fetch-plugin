@@ -37,7 +37,7 @@ index.html
 <!DOCTYPE html>
 <html>
   <body>
-    /*{templates_script_fetch file="someTemplate.jst" jst=1}*/
+    /*{template_script_fetch file="someTemplate.jst" jst=1}*/
   </body>
 </html>
 ```

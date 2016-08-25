@@ -5,7 +5,7 @@ var fs = require('fs');
 module.exports = function(file, text, data, opts, handleFn) {
 	'use strict';
 
-	opts.name = 'templates_script_fetch';
+	opts.name = 'template_script_fetch';
 
 	var result = '';
 	var reStart = new RegExp(opts.prefix + '[ ]*' + opts.name + ' ');

@@ -7,7 +7,7 @@ describe('## script fetch', function() {
 	it('# basic', function(done) {
 		var text = script_fetch(
 			null,
-			'content/*{templates_script_fetch file="someTemplate.jst" jst=1}*/content',
+			'content/*{template_script_fetch file="someTemplate.jst" jst=1}*/content',
 			null,
 			{
 				prefix: '\\/\\*\\{\\$?',
@@ -27,7 +27,7 @@ describe('## script fetch', function() {
 	it('# recursion', function(done) {
 		var text = script_fetch(
 			null,
-			'content/*{templates_script_fetch file="someRecursionTemplate.jst" jst=1}*/content',
+			'content/*{template_script_fetch file="someRecursionTemplate.jst" jst=1}*/content',
 			null,
 			{
 				prefix: '\\/\\*\\{\\$?',
@@ -49,7 +49,7 @@ describe('## script fetch', function() {
 		it('include template from first path if file exists', function (done) {
 			var text = script_fetch(
 				null,
-				'content/*{templates_script_fetch file="someTemplate.jst" jst=1}*/content',
+				'content/*{template_script_fetch file="someTemplate.jst" jst=1}*/content',
 				null,
 				{
 					prefix: '\\/\\*\\{\\$?',
@@ -69,7 +69,7 @@ describe('## script fetch', function() {
 		it('include template from second path if file not exists to first path', function (done) {
 			var text = script_fetch(
 				null,
-				'content/*{templates_script_fetch file="someRecursionTemplate.jst" jst=1}*/content',
+				'content/*{template_script_fetch file="someRecursionTemplate.jst" jst=1}*/content',
 				null,
 				{
 					prefix: '\\/\\*\\{\\$?',
