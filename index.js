@@ -1,6 +1,7 @@
 var balanced = require('balanced-match');
 var path = require('path');
 var fs = require('fs');
+var gutil = require('gulp-util');
 
 module.exports = function(file, text, data, opts, handleFn) {
 	'use strict';
@@ -68,10 +69,20 @@ module.exports = function(file, text, data, opts, handleFn) {
 			includeContent.replace(/(\r\n)|(\n)/g, '\\n').replace(/\t/g, '\\t').replace(/'/g, '\\\'') +
 			// string after markup
 			text.substring(matchArg.end, text.length).replace(reEnd, '');
+
+		let recFile = new gutil.File({
+			cwd: process.cwd(),
+			base: file.base,
+			path: file.path,
+			contents: new Buffer(text)
+		});
+
+		recFile = handleFn(recFile, text, data);
+
+		text = String(recFile.contents);
 	}
 
 	result += text;
 
 	return result;
-
 };

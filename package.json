@@ -16,14 +16,17 @@
     "gulp",
     "plugin"
   ],
-  "files" : ["index.js"],
+  "files": [
+    "index.js"
+  ],
   "author": "paragraff",
   "contributors": [],
   "license": "MIT",
   "devDependencies": {
     "gulp": "3",
     "mocha": "2",
-    "should": "7"
+    "should": "7",
+    "sinon": "^1.17.5"
   },
   "dependencies": {
     "balanced-match": "^0.4.1"
