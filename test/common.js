@@ -20,7 +20,27 @@ describe('## script fetch', function() {
 			}
 		);
 		text.should.equal(
-			'content<div>\n<h3>Site template</h3>\n<p>Lorem ipsum dolor sit amet</p>\n</div>content'
+			'content<div>\\n<h3>Site template</h3>\\n\\t<p>Lorem ipsum dolor sit amet</p>\\n</div>content'
+		);
+		done();
+	});
+	it('# char escaping', function(done) {
+		var text = script_fetch(
+			null,
+			'content\n/*{template_script_fetch file="someTemplate.jst" jst=1}*/con\'t\'ent',
+			null,
+			{
+				prefix: '\\/\\*\\{\\$?',
+				suffix: '\\}\\*\\/',
+				context: {
+					path: {
+						templates: ['test/fixtures/projectTemplates']
+					}
+				}
+			}
+		);
+		text.should.equal(
+			'content\n<div>\\n<h3>Site template</h3>\\n\\t<p>Lorem ipsum dolor sit amet</p>\\n</div>con\'t\'ent'
 		);
 		done();
 	});
@@ -40,8 +60,8 @@ describe('## script fetch', function() {
 			}
 		);
 		text.should.equal(
-			'content<div>\n<p>Recursion template:</p>\n<div>\n<h3>Site template</h3>\n' +
-			'<p>Lorem ipsum dolor sit amet</p>\n</div>\n</div>content'
+			'content<div>\\n<p>Recursion template:</p>\\n<div>\\n<h3>Site template</h3>\\n' +
+			'\\t<p>Lorem ipsum dolor sit amet</p>\\n</div>\\n</div>content'
 		);
 		done();
 	});
@@ -62,7 +82,7 @@ describe('## script fetch', function() {
 				}
 			);
 			text.should.equal(
-				'content<div>\n<h3>Engine template</h3>\n<p>Lorem ipsum dolor sit amet</p>\n</div>content'
+				'content<div>\\n<h3>Engine template</h3>\\n<p>Lorem ipsum dolor sit amet</p>\\n</div>content'
 			);
 			done();
 		});
@@ -82,8 +102,8 @@ describe('## script fetch', function() {
 				}
 			);
 			text.should.equal(
-				'content<div>\n<p>Recursion template:</p>\n<div>\n<h3>Engine template</h3>\n' +
-				'<p>Lorem ipsum dolor sit amet</p>\n</div>\n</div>content'
+				'content<div>\\n<p>Recursion template:</p>\\n<div>\\n<h3>Engine template</h3>\\n' +
+				'<p>Lorem ipsum dolor sit amet</p>\\n</div>\\n</div>content'
 			);
 			done();
 		});

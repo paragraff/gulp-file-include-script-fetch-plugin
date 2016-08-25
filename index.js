@@ -65,7 +65,7 @@ module.exports = function(file, text, data, opts, handleFn) {
 			// string before markup
 			text.substring(0, matchArg.start) +
 			// new string instead markup
-			includeContent +
+			includeContent.replace(/(\r\n)|(\n)/g, '\\n').replace(/\t/g, '\\t').replace(/'/g, '\\\'') +
 			// string after markup
 			text.substring(matchArg.end, text.length).replace(reEnd, '');
 	}
