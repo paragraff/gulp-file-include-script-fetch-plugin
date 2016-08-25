@@ -14,7 +14,7 @@ describe('## script fetch', function() {
 				suffix: '\\}\\*\\/',
 				context: {
 					path: {
-						templates: ['fixtures/projectTemplates']
+						templates: ['test/fixtures/projectTemplates']
 					}
 				}
 			}
@@ -34,7 +34,7 @@ describe('## script fetch', function() {
 				suffix: '\\}\\*\\/',
 				context: {
 					path: {
-						templates: ['fixtures/projectTemplates']
+						templates: ['test/fixtures/projectTemplates']
 					}
 				}
 			}
@@ -46,7 +46,7 @@ describe('## script fetch', function() {
 		done();
 	});
 	describe('# for several paths', function () {
-		it('include template from first path if file exists', function () {
+		it('include template from first path if file exists', function (done) {
 			var text = script_fetch(
 				null,
 				'content/*{templates_script_fetch file="someTemplate.jst" jst=1}*/content',
@@ -66,7 +66,7 @@ describe('## script fetch', function() {
 			);
 			done();
 		});
-		it('include template from second path if file not exists to first path', function () {
+		it('include template from second path if file not exists to first path', function (done) {
 			var text = script_fetch(
 				null,
 				'content/*{templates_script_fetch file="someRecursionTemplate.jst" jst=1}*/content',
@@ -82,7 +82,7 @@ describe('## script fetch', function() {
 				}
 			);
 			text.should.equal(
-				'content<div>\n<p>Recursion template:</p>\n<div>\n<h3>Site template</h3>\n' +
+				'content<div>\n<p>Recursion template:</p>\n<div>\n<h3>Engine template</h3>\n' +
 				'<p>Lorem ipsum dolor sit amet</p>\n</div>\n</div>content'
 			);
 			done();
